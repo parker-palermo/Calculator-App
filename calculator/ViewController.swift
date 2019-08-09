@@ -10,10 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet var main: UIView!
+    
     //MARK: Properties
     @IBOutlet weak var display: UILabel!
     var result:Double = 0.0
     var operatorSigns:[String] = []
+    
+    func autoScale(view v: UIView) {
+        let screenRect = UIScreen.main.bounds
+        let screenWidth = screenRect.size.width
+        let screenHeight = screenRect.size.height
+        v.transform = CGAffineTransform.identity.scaledBy(x: 0.6*screenWidth/276, y: 0.6*screenWidth/276)
+    }
     
     @IBAction func numberKeyHandler(_ sender: UIButton) {
         let userInput = sender.titleLabel!.text!
@@ -88,6 +97,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        autoScale(view: main)
         // Do any additional setup after loading the view.
     }
 
